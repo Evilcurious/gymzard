@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand: #1557d6;
+  --brand-dark: #122246;
+  --brand-soft: #eef5ff;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #f4f8ff;
+  color: #122246;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+
+::selection { background: #bcd7ff; color: #122246; }
+
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #c8d8f0; border-radius: 99px; border: 2px solid transparent; background-clip: content-box; }
+::-webkit-scrollbar-thumb:hover { background: #9cbbe8; background-clip: content-box; }
+
+@layer components {
+  .surface {
+    @apply rounded-2xl border border-blue-100/80 bg-white shadow-card;
+  }
+  .input-base {
+    @apply w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-brand-400 focus:ring-4 focus:ring-brand-100;
+  }
+  .label-base {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-500;
+  }
+  .table-head {
+    @apply whitespace-nowrap px-4 py-3 text-left text-[11px] font-bold uppercase tracking-wider text-slate-500;
+  }
+  .table-cell {
+    @apply whitespace-nowrap px-4 py-3 text-sm text-slate-700;
+  }
+  .link-blue {
+    @apply font-semibold text-brand-600 transition hover:text-brand-800;
+  }
+}
+
+.blue-gradient {
+  background: linear-gradient(135deg, #0b3f9e 0%, #1557d6 48%, #3a87f7 100%);
+}
+.blue-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.soft-grid {
+  background-image:
+    linear-gradient(rgba(21,87,214,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(21,87,214,0.045) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+.meter-fill { transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.print-only { display: none; }
+
+@media print {
+  body { background: white !important; }
+  .no-print, .no-print * { display: none !important; }
+  .print-only { display: block !important; }
+  #root > *:not(.receipt-overlay):not(.card-overlay) { display: none !important; }
+  .receipt-overlay, .card-overlay {
+    position: static !important;
+    inset: auto !important;
+    display: block !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    background: white !important;
+    backdrop-filter: none !important;
+  }
+  .receipt-sheet, .card-sheet {
+    width: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    animation: none !important;
+  }
+  .receipt-actions, .card-actions { display: none !important; }
+  .print-sheet {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  @page { margin: 12mm; }
+}
+
+.recharts-default-tooltip {
+  border-radius: 12px !important;
+  border: 1px solid #d9e8ff !important;
+  box-shadow: 0 12px 30px -12px rgba(21, 68, 145, 0.4) !important;
+}
